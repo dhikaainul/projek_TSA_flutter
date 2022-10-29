@@ -22,12 +22,12 @@ class NewsBusinessCategory extends StatelessWidget {
                 .center, //mengatur posisi widget di dalam row agar terletak di tengah
             children: const <Widget>[
               Text(
-                "Pemuda",
+                "Berita",
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
               ),
               Text(
-                " News",
+                " Bisnis",
                 style:
                     TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
               )
@@ -39,6 +39,7 @@ class NewsBusinessCategory extends StatelessWidget {
       ),
       // futurebuilder : untuk menentukan status dari proses yang sedang berjalan
       body: FutureBuilder(
+        // future: http.get(""),
           future: requestBusinessCategory.getNewsByCategory(newsBusiness),
           builder: (context, snapshot) {
             //snapshot mendapatkan data maka return ke ListBusinessNewsCategory

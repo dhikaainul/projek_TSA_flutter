@@ -7,11 +7,11 @@ import 'package:flutter_news/pages/news_science_pages.dart';
 import 'package:flutter_news/pages/news_sport_pages.dart';
 import 'package:flutter_news/pages/news_general_pages.dart';
 import 'package:flutter_news/views/news_item.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class HalamanUtamaPage extends StatelessWidget {
+  //konstruktor
   NewsRespon? responseBerita;
   HalamanUtamaPage(this.responseBerita, {super.key});
 
@@ -34,6 +34,7 @@ class HalamanUtamaPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
+                          //Memanggil class NewsHealthCategory dengan parameter variabel newshealth
                           builder: (BuildContext context) => NewsHealthCategory(
                             newsHealth: '',
                           ),
@@ -74,6 +75,7 @@ class HalamanUtamaPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
+                          //Memanggil class NewsEntertainmentCategory dengan parameter variabel newsEntertainment
                           builder: (BuildContext context) =>
                               NewsEntertainmentCategory(
                             newsEntertainment: '',
@@ -115,6 +117,7 @@ class HalamanUtamaPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
+                          //Memanggil class NewsBusinessCategory dengan parameter variabel newsBusiness
                           builder: (BuildContext context) =>
                               NewsBusinessCategory(
                             newsBusiness: '',
@@ -156,6 +159,7 @@ class HalamanUtamaPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
+                          //Memanggil class NewsGeneralCategory dengan parameter variabel newsGeneral
                           builder: (BuildContext context) =>
                               NewsGeneralCategory(
                             newsGeneral: '',
@@ -197,6 +201,7 @@ class HalamanUtamaPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
+                            //Memanggil class NewsScienceCategory dengan parameter variabel newsScience
                             builder: (BuildContext context) =>
                                 NewsScienceCategory(
                                   newsScience: '',
@@ -237,6 +242,7 @@ class HalamanUtamaPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
+                          //Memanggil class NewsSportCategory dengan parameter variabel newsSport
                           builder: (BuildContext context) => NewsSportCategory(
                             newsSport: '',
                           ),
@@ -275,14 +281,25 @@ class HalamanUtamaPage extends StatelessWidget {
                 ],
               ),
             ),
+            Container(
+                padding: EdgeInsets.only(right: 210, top: 5),
+                child: const Text(
+                  "Top Headline News",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600),
+                )),
             //menampilkan news top headline
             Container(
               margin: const EdgeInsets.only(top: 16),
               child: ListView.builder(
+                //memanggil variabel responseBerita dengan type NewsRespon dengan panjang sesuai news yang ada di News Respon
                 itemCount: responseBerita?.news.length,
                 shrinkWrap: true,
                 physics: const ClampingScrollPhysics(),
                 itemBuilder: (context, index) {
+                  //Dikembalikan ke class NewsItem dengan variabel yang dipanggil sesuai responseBerita
                   return NewsItem(
                     imgUrl: responseBerita?.news[index].urlToImage ?? "",
                     title: responseBerita?.news[index].title ?? "",

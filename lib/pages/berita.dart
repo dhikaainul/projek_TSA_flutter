@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news/pages/halamanJawaPos.dart';
 import 'package:flutter_news/pages/halamanTribun.dart';
 import 'package:flutter_news/pages/halamancnn.dart';
 import 'package:flutter_news/pages/halamandetik.dart';
 import 'package:flutter_news/pages/halamankompas.dart';
-import 'package:flutter_news/pages/home_page.dart';
+
+import 'halamanLiputan6.dart';
+// import 'package:flutter_news/pages/home_page.dart';
 
 class Berita extends StatelessWidget {
   const Berita({super.key});
@@ -38,7 +41,7 @@ class Berita extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.only(top: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -56,7 +59,7 @@ class Berita extends StatelessWidget {
                     children: [
                       SizedBox(
                         width: 200,
-                        height: 200,
+                        height: 228,
                         child: Card(
                           elevation: 10,
                           child: Stack(
@@ -66,7 +69,7 @@ class Berita extends StatelessWidget {
                               ),
                               Container(
                                 margin: EdgeInsets.only(top: 10),
-                                height: 170,
+                                height: 200,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(4),
@@ -99,7 +102,7 @@ class Berita extends StatelessWidget {
                     children: [
                       SizedBox(
                         width: 200,
-                        height: 200,
+                        height: 228,
                         child: Card(
                           elevation: 10,
                           child: Stack(
@@ -109,7 +112,7 @@ class Berita extends StatelessWidget {
                               ),
                               Container(
                                 margin: EdgeInsets.only(top: 10),
-                                height: 170,
+                                height: 200,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(4),
@@ -131,7 +134,7 @@ class Berita extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.only(top: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -149,7 +152,7 @@ class Berita extends StatelessWidget {
                     children: [
                       SizedBox(
                         width: 200,
-                        height: 200,
+                        height: 228,
                         child: Card(
                           elevation: 10,
                           child: Stack(
@@ -159,14 +162,14 @@ class Berita extends StatelessWidget {
                               ),
                               Container(
                                 margin: EdgeInsets.only(top: 10),
-                                height: 170,
+                                height: 200,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(4),
                                       topRight: Radius.circular(4)),
                                   image: DecorationImage(
                                     image:
-                                        AssetImage('assets/images/tribun.png'),
+                                        AssetImage('assets/images/tribun2.png'),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -192,7 +195,7 @@ class Berita extends StatelessWidget {
                     children: [
                       SizedBox(
                         width: 200,
-                        height: 200,
+                        height: 228,
                         child: Card(
                           elevation: 10,
                           child: Stack(
@@ -202,7 +205,7 @@ class Berita extends StatelessWidget {
                               ),
                               Container(
                                 margin: EdgeInsets.only(top: 10),
-                                height: 170,
+                                height: 200,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(4),
@@ -210,6 +213,100 @@ class Berita extends StatelessWidget {
                                   image: DecorationImage(
                                     image:
                                         AssetImage('assets/images/kompas.png'),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(top: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                //tombol navigator push ke Mandala()
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => JawaPos()),
+                    );
+                  },
+                  //tampilan card gambar bioskop mandala dan keterangannya
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        height: 228,
+                        child: Card(
+                          elevation: 10,
+                          child: Stack(
+                            children: [
+                              Opacity(
+                                opacity: 0.7,
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 10),
+                                height: 200,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(4),
+                                      topRight: Radius.circular(4)),
+                                  image: DecorationImage(
+                                    image:
+                                        AssetImage('assets/images/jawapos.jpg'),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                //tombol navigator push ke Mandala()
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Liputan6()),
+                    );
+                  },
+                  //tampilan card gambar bioskop mandala dan keterangannya
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        height: 228,
+                        child: Card(
+                          elevation: 10,
+                          child: Stack(
+                            children: [
+                              Opacity(
+                                opacity: 0.7,
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 10),
+                                height: 200,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(4),
+                                      topRight: Radius.circular(4)),
+                                  image: DecorationImage(
+                                    image:
+                                        AssetImage('assets/images/liputan6.jpg'),
                                     fit: BoxFit.cover,
                                   ),
                                 ),

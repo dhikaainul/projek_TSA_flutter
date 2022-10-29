@@ -3,6 +3,7 @@ import 'package:flutter_news/pages/berita.dart';
 import 'package:flutter_news/pages/home_page.dart';
 import 'package:flutter_news/pages/news_business_pages.dart';
 import 'package:flutter_news/pages/news_health_pages.dart';
+import 'package:flutter_news/pages/savenews.dart';
 
 class ButtomNavi extends StatefulWidget {
   const ButtomNavi({super.key});
@@ -13,7 +14,7 @@ class ButtomNavi extends StatefulWidget {
 
 class _ButtomNaviState extends State<ButtomNavi> {
   int currentIndex = 0;
-  final List<Widget> body = [HomePage(), Berita(), Berita()];
+  final List<Widget> body = [HomePage(), Berita(), SaveNews()];
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +48,12 @@ class _ButtomNaviState extends State<ButtomNavi> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.account_box_outlined,
+              Icons.save,
               color: Colors.grey,
             ),
-            label: 'Profil',
+            label: 'Save',
             activeIcon: Icon(
-              Icons.account_box_outlined,
+              Icons.save,
               color: Colors.black,
             ),
           ),

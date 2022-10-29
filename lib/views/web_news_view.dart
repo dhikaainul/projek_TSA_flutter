@@ -27,7 +27,7 @@ class _WebNewsState extends State<WebNews> {
                 .center, //mengatur posisi widget di dalam row agar terletak di tengah
             children: const <Widget>[
               Text(
-                "Pemuda",
+                "Web",
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
               ),

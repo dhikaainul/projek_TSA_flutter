@@ -19,7 +19,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   }
 
   startSplashScreen() async {
-    var duration = const Duration(seconds: 8);
+    var duration = const Duration(seconds: 5);
     return Timer(duration, () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) {
@@ -32,7 +32,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Color.fromARGB(255, 1, 4, 7),
+      // backgroundColor: Color.fromARGB(255, 1, 4, 7), 
       body: Center(
         child: Image.asset(
           "assets/images/pemudanews.png",

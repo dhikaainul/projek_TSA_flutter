@@ -22,12 +22,12 @@ class NewsSportCategory extends StatelessWidget {
                 .center, //mengatur posisi widget di dalam row agar terletak di tengah
             children: const <Widget>[
               Text(
-                "Pemuda",
+                "Berita",
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
               ),
               Text(
-                " News",
+                " Olahraga",
                 style:
                     TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
               )

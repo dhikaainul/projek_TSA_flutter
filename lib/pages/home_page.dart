@@ -37,18 +37,6 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        // leading: IconButton(
-        //     icon: const Icon(Icons.search, color: Colors.black),
-        //     //Menangani kejadian saat menu home diklik
-        //     onPressed: () {
-        //       Navigator.push(
-        //                 context,
-        //                 MaterialPageRoute(
-        //                   builder: (BuildContext context) => const Search(),
-        //                 ),
-        //               );
-        //     },
-        //   ),
         actions: <Widget>[
           InkWell(
             child: Icon(

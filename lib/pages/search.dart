@@ -13,17 +13,17 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   int? newsCount;
-  late NewsRespon news;
+  NewsRespon? news;
   List search = [];
-  late HttpService service;
+  HttpService? service;
   // ignore: prefer_typing_uninitialized_variables
-  var myValue;
+  // var myValue;
 
   Future initialize() async {
     //news = [];
-    news = await service.getNews();
+    news = await service?.getNews();
     setState(() {
-      newsCount = news.news.length;
+      newsCount = news?.news.length;
       news = news;
     });
   }
@@ -43,8 +43,10 @@ class _SearchState extends State<Search> {
       setState(() {});
       return;
     }
-    news.news.forEach((i) {
-      if (i.title.contains(text)) search.add(i);
+    // ignore: avoid_function_literals_in_foreach_calls
+    news?.news.forEach((i) {
+      if (i.title.toLowerCase().contains(text.toLowerCase()) ||
+          i.description.contains(text)) search.add(i);
     });
     setState(() {});
   }
@@ -53,20 +55,24 @@ class _SearchState extends State<Search> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment
-              .center, //mengatur posisi widget di dalam row agar terletak di tengah
-          children: const <Widget>[
-            Text(
-              "Pemuda",
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
-            ),
-            Text(
-              " News",
-              style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
-            )
-          ],
+        title: Container(
+          padding: EdgeInsets.only(right: 50),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment
+                .center, //mengatur posisi widget di dalam row agar terletak di tengah
+            children: const <Widget>[
+              Text(
+                "Search",
+                style:
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+              ),
+              Text(
+                " News",
+                style:
+                    TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
+              )
+            ],
+          ),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -92,31 +98,32 @@ class _SearchState extends State<Search> {
               ),
             ),
             Container(
-              height: 330 ,
-              child: search.isNotEmpty || controller.text.isNotEmpty
-                  ? ListView.builder(
-                      itemCount:
-                          // ignore: unnecessary_null_comparison
-                          (search.length == null) ? 0 : search.length,
-                      itemBuilder: (context, index) {
-                        return NewsItem(
-                          imgUrl: search[index].urlToImage ?? "",
-                          title: search[index].title ?? "",
-                          desc: search[index].description ?? "",
-                          content: search[index].content ?? "",
-                          posturl: search[index].url ?? "",
-                          name: search[index].source.name ?? "",
-                        );
-                      })
-                  : ListView.builder(
-                      // ignore: unnecessary_null_comparison
-                      itemCount: (newsCount == null) ? 0 : newsCount,
-                      itemBuilder: (context, index) {
-                        return const Center(
-                          child: Text(""),
-                        );
-                      },
-                    ),
+              height: 330,
+              // child: search != 0 || controller.text.isNotEmpty
+              child: ListView.builder(
+                itemCount: search.length,
+                // ignore: unnecessary_null_comparison
+                // (search.length == null) ? 0 : search.length,
+                itemBuilder: (context, index) {
+                  return NewsItem(
+                    imgUrl: search[index].urlToImage ?? "",
+                    title: search[index].title ?? "",
+                    desc: search[index].description ?? "",
+                    content: search[index].content ?? "",
+                    posturl: search[index].url ?? "",
+                    name: search[index].source.name ?? "",
+                  );
+                },
+              ),
+              // : ListView.builder(
+              //     // ignore: unnecessary_null_comparison
+              //     itemCount: (newsCount == null) ? 0 : newsCount,
+              //     itemBuilder: (context, index) {
+              //       return const Center(
+              //         child: Text(""),
+              //       );
+              //     },
+              //   ),
             ),
           ],
         ),

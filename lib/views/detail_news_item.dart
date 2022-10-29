@@ -1,9 +1,12 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_news/pages/data.dart';
 import 'package:flutter_news/views/web_news_view.dart';
 import 'package:share/share.dart';
 
-class DetailNewsItem extends StatelessWidget {
+class DetailNewsItem extends StatefulWidget {
   final String imgUrl, title, desc, content, posturl, name;
+  final index, value;
 
   //konstruktor
   const DetailNewsItem(
@@ -13,7 +16,74 @@ class DetailNewsItem extends StatelessWidget {
       required this.title,
       required this.content,
       required this.name,
-      required this.posturl});
+      required this.posturl,
+      required this.index,
+      required this.value});
+
+  @override
+  State<DetailNewsItem> createState() => _DetailNewsItemState();
+}
+
+class _DetailNewsItemState extends State<DetailNewsItem> {
+  final index;
+  final value;
+  final snackbar = const SnackBar(content: Text("Berita telah Tersimpan"));
+  String img =
+      "https://smkassaadahgresik.sch.id/wp-content/uploads/2022/08/no.png";
+  showimage() {
+    // ignore: unnecessary_null_comparison
+    if (widget.imgUrl == " ") {
+      return img;
+    } else {
+      return widget.imgUrl;
+    }
+  }
+
+  _DetailNewsItemState({@required this.index, @required this.value}) : super();
+
+  // proses menyimpan data yang diinput user ke Shared Preferences
+  saveData() async {
+    // cek semua data sudah diisi atau belum
+    // jika belum tampilkan pesan error
+    if (index == null) {
+      // data yang akan dimasukkan atau diupdate ke Shared Preferences sesuai input user
+      var customer = {
+        'judul': widget.title,
+        'isi': widget.desc,
+        'gambar': widget.imgUrl,
+        'nama': widget.name,
+        'index_berita': index,
+        'url': widget.posturl
+      };
+
+      // ambil data Shared Preferences sebagai list
+      var savedData = await Data.getData();
+      savedData.insert(0, customer);
+
+      // // simpan data yang diinsert / diedit user ke Shared Preferences kembali
+      // // kemudian tutup halaman insert ini
+      await Data.saveData(savedData);
+      // Navigator.pop(context);
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('Empty Field'),
+              content: Text('Please fill all field.'),
+              actions: <Widget>[
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('OK'),
+                )
+              ],
+            );
+          });
+    }
+  }
+
   //item berita bisa diklik dengan menggunakan gesture detectore ke hal web beritanya
   @override
   Widget build(BuildContext context) {
@@ -26,7 +96,7 @@ class DetailNewsItem extends StatelessWidget {
                 .center, //mengatur posisi widget di dalam row agar terletak di tengah
             children: const <Widget>[
               Text(
-                "Pemuda",
+                "Detail",
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
               ),
@@ -40,20 +110,15 @@ class DetailNewsItem extends StatelessWidget {
         ),
         // backgroundColor: Colors.blue,
         actions: <Widget>[
+          SizedBox(width: 10),
           InkWell(
             child: Icon(
-              Icons.public,
+              Icons.bookmark,
               color: Colors.white,
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => WebNews(
-                    postUrl: posturl,
-                  ),
-                ),
-              );
+              saveData();
+              ScaffoldMessenger.of(context).showSnackBar(snackbar);
             },
           ),
           SizedBox(width: 10),
@@ -63,7 +128,7 @@ class DetailNewsItem extends StatelessWidget {
               color: Colors.white,
             ),
             onTap: () {
-              Share.share(posturl);
+              Share.share(widget.posturl);
             },
           ),
           SizedBox(width: 10),
@@ -94,78 +159,48 @@ class DetailNewsItem extends StatelessWidget {
                 //let's add the height
 
                 image: DecorationImage(
-                    image: NetworkImage(imgUrl), fit: BoxFit.cover),
+                    image: NetworkImage(showimage()), fit: BoxFit.cover),
                 borderRadius: BorderRadius.circular(12.0),
               ),
             ),
-            // InkWell(
-            //   child: Icon(
-            //     Icons.public,
-            //     color: Colors.black,
-            //   ),
-            //   onTap: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => WebNews(
-            //           postUrl: posturl,
-            //         ),
-            //       ),
-            //     );
-            //   },
-            // ),
-            // InkWell(
-            //   child: Icon(
-            //     Icons.public,
-            //     color: Colors.black,
-            //   ),
-            //   onTap: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => WebNews(
-            //           postUrl: posturl,
-            //         ),
-            //       ),
-            //     );
-            //   },
-            // ),
             SizedBox(
               height: 12,
             ),
-            Text(
-              title,
-              maxLines: 4,
+            AutoSizeText(
+              widget.title,
               style: TextStyle(
                   color: Colors.black87,
                   fontSize: 18,
                   fontWeight: FontWeight.w500),
+              maxLines: 3,
             ),
             SizedBox(
               height: 10,
             ),
-            Text(
-              content,
-              maxLines: 5,
+            AutoSizeText(
+              widget.content,
               style: TextStyle(color: Colors.black54, fontSize: 13),
+              maxLines: 5,
             ),
-            //   InkWell(
-            //     child: Icon(
-            //       Icons.public,
-            //       color: Colors.black,
-            //     ),
-            //     onTap: () {
-            //       Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //           builder: (context) => WebNews(
-            //             postUrl: posturl,
-            //           ),
-            //         ),
-            //       );
-            //     },
-            //   ),
-            SizedBox(width: 10),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 120),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => WebNews(
+                        postUrl: widget.posturl,
+                      ),
+                    ),
+                  );
+                },
+                child: new Text('Selengkapnya'),
+              ),
+            ),
           ],
         ),
       ),

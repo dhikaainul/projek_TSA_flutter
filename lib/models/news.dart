@@ -11,7 +11,8 @@ class News {
   String publishedAt;
   String content;
 
-  //konversi dari jsonmap ke News -> mengambil data berbentuk jsonmap yang disimpan ke bentuk variabel
+  //konversi dari News jsonmap ke struktur map -> mengambil data berbentuk jsonmap yang disimpan ke bentuk variabel
+  // Konstruktor Source.fromJson(), untuk membuat Source instance baru dari struktur peta.
   News.fromJsonMap(Map<String, dynamic> map)
       : source = Source.fromJsonMap(map["source"]),
         author = map["author"] ?? "",
@@ -22,11 +23,13 @@ class News {
         publishedAt = map["publishedAt"] ?? "",
         content = map["content"] ?? "";
 
-  //konversi dari News ke json
+  //konversi dari Map ke json
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
 
     //untuk memastikan apakah data pada class Source bernilai null atau tidak
+    //Memasukkan data 
+    // metode, yang mengubah sebuah Source instance menjadi sebuah peta.
     // ignore: prefer_null_aware_operators, unnecessary_null_comparison
     data['source'] = source == null ? null : source.toJson();
 
