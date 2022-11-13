@@ -29,7 +29,7 @@ class _TribunState extends State<Tribun> {
                 .center, //mengatur posisi widget di dalam row agar terletak di tengah
             children: const <Widget>[
               Text(
-                "Pemuda",
+                "Tribun",
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
               ),

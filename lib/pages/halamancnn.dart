@@ -29,12 +29,12 @@ class _CnnState extends State<Cnn> {
                 .center, //mengatur posisi widget di dalam row agar terletak di tengah
             children: const <Widget>[
               Text(
-                "Pemuda",
+                "CNN",
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
               ),
               Text(
-                " News",
+                " Indonesia",
                 style:
                     TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
               )

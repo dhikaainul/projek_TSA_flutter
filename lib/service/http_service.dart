@@ -4,6 +4,16 @@ import 'package:http/http.dart' as http;
 
 String apiKey = "42682bd9eb9e4fb2a963a5f6ec924d69"; //deklarasi apikey
 
+class HttpSearching {
+  Future<NewsRespon> getNews() async {
+    final String url =
+        "https://newsapi.org/v2/everything?domains=detik.com,cnnindonesia.com,suara.com,tribunnews.com,liputan6.com&sortBy=publishedAt&apiKey=$apiKey";
+    var response = await http.get(Uri.parse(url));
+    var jsonData = jsonDecode(response.body);
+    return NewsRespon.fromJsonMap(jsonData);
+  }
+}
+
 //mengambil respon dari server newsapi
 class HttpService {
   Future<NewsRespon> getNews() async {

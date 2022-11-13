@@ -15,7 +15,7 @@ class _SearchState extends State<Search> {
   int? newsCount;
   NewsRespon? news;
   List search = [];
-  HttpService? service;
+  HttpSearching? service;
   // ignore: prefer_typing_uninitialized_variables
   // var myValue;
 
@@ -30,7 +30,7 @@ class _SearchState extends State<Search> {
 
   @override
   void initState() {
-    service = HttpService();
+    service = HttpSearching();
     initialize();
     super.initState();
   }
@@ -43,7 +43,7 @@ class _SearchState extends State<Search> {
       setState(() {});
       return;
     }
-    // ignore: avoid_function_literals_in_foreach_calls
+    // mencari berita sesuai dari judul dan isi 
     news?.news.forEach((i) {
       if (i.title.toLowerCase().contains(text.toLowerCase()) ||
           i.description.contains(text)) search.add(i);
@@ -86,6 +86,7 @@ class _SearchState extends State<Search> {
               child: Card(
                 child: ListTile(
                   leading: const Icon(Icons.search),
+                  //Textfiled search 
                   title: TextField(
                     controller: controller,
                     onChanged: onSearch,
@@ -100,6 +101,7 @@ class _SearchState extends State<Search> {
             Container(
               height: 330,
               // child: search != 0 || controller.text.isNotEmpty
+              //Menampilkan daftar berita 
               child: ListView.builder(
                 itemCount: search.length,
                 // ignore: unnecessary_null_comparison

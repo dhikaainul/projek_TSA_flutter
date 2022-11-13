@@ -29,7 +29,7 @@ class _KompasState extends State<Kompas> {
                 .center, //mengatur posisi widget di dalam row agar terletak di tengah
             children: const <Widget>[
               Text(
-                "Pemuda",
+                "Kompas",
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
               ),

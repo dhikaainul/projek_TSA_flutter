@@ -30,8 +30,8 @@ class _DetailNewsItemState extends State<DetailNewsItem> {
   final snackbar = const SnackBar(content: Text("Berita telah Tersimpan"));
   String img =
       "https://smkassaadahgresik.sch.id/wp-content/uploads/2022/08/no.png";
+  // jika widget.imgUrl kosong maka akan menampilkan img jika tidak kosong maka tampil widget.imgUrl
   showimage() {
-    // ignore: unnecessary_null_comparison
     if (widget.imgUrl == " ") {
       return img;
     } else {
@@ -41,12 +41,10 @@ class _DetailNewsItemState extends State<DetailNewsItem> {
 
   _DetailNewsItemState({@required this.index, @required this.value}) : super();
 
-  // proses menyimpan data yang diinput user ke Shared Preferences
+  // proses menyimpan data ke Shared Preferences
   saveData() async {
-    // cek semua data sudah diisi atau belum
-    // jika belum tampilkan pesan error
+    // jika index kosong maka var customer akan diisi oleh widget
     if (index == null) {
-      // data yang akan dimasukkan atau diupdate ke Shared Preferences sesuai input user
       var customer = {
         'judul': widget.title,
         'isi': widget.desc,
@@ -58,12 +56,13 @@ class _DetailNewsItemState extends State<DetailNewsItem> {
 
       // ambil data Shared Preferences sebagai list
       var savedData = await Data.getData();
+      // masukkan data pada index 0 pada data Shared Preferences
+      // sehingga pada halaman saved data yang baru dimasukkan
+      // akan tampil paling atas
       savedData.insert(0, customer);
 
-      // // simpan data yang diinsert / diedit user ke Shared Preferences kembali
-      // // kemudian tutup halaman insert ini
+      // // simpan data
       await Data.saveData(savedData);
-      // Navigator.pop(context);
     } else {
       showDialog(
           context: context,
@@ -84,7 +83,6 @@ class _DetailNewsItemState extends State<DetailNewsItem> {
     }
   }
 
-  //item berita bisa diklik dengan menggunakan gesture detectore ke hal web beritanya
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,7 +106,7 @@ class _DetailNewsItemState extends State<DetailNewsItem> {
             ],
           ),
         ),
-        // backgroundColor: Colors.blue,
+        // icon klik simpan data berita
         actions: <Widget>[
           SizedBox(width: 10),
           InkWell(
@@ -122,6 +120,7 @@ class _DetailNewsItemState extends State<DetailNewsItem> {
             },
           ),
           SizedBox(width: 10),
+          // icon klik share data berita
           InkWell(
             child: Icon(
               Icons.share_outlined,
@@ -156,8 +155,6 @@ class _DetailNewsItemState extends State<DetailNewsItem> {
               height: 200.0,
               width: double.infinity,
               decoration: BoxDecoration(
-                //let's add the height
-
                 image: DecorationImage(
                     image: NetworkImage(showimage()), fit: BoxFit.cover),
                 borderRadius: BorderRadius.circular(12.0),
@@ -185,6 +182,7 @@ class _DetailNewsItemState extends State<DetailNewsItem> {
             SizedBox(
               height: 10,
             ),
+            //Navigator push untuk menuju ke halaman web berita
             Container(
               padding: EdgeInsets.only(left: 120),
               child: ElevatedButton(

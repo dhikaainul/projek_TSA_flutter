@@ -31,12 +31,12 @@ class _JawaPosState extends State<JawaPos> {
                 .center, //mengatur posisi widget di dalam row agar terletak di tengah
             children: const <Widget>[
               Text(
-                "Pemuda",
+                "Jawa",
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
               ),
               Text(
-                " News",
+                " Pos",
                 style:
                     TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
               )

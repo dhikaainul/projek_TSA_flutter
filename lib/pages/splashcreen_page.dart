@@ -17,7 +17,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     super.initState();
     startSplashScreen();
   }
-
+  //halaman splashscreen dengan duration 5 detik
   startSplashScreen() async {
     var duration = const Duration(seconds: 5);
     return Timer(duration, () {

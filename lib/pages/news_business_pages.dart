@@ -78,6 +78,7 @@ class ListBusinessNewsCategory extends StatelessWidget {
             physics: const ClampingScrollPhysics(),
             //itemBuilder : bagaimana item ditampilkan
             itemBuilder: (context, index) {
+              //item berita ditampilkan dengan memanggil newsitem
               return NewsItem(
                 imgUrl: responseBerita?.news[index].urlToImage ?? "",
                 title: responseBerita?.news[index].title ?? "",

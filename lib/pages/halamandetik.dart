@@ -27,7 +27,7 @@ class _DetikState extends State<Detik> {
                 .center, //mengatur posisi widget di dalam row agar terletak di tengah
             children: const <Widget>[
               Text(
-                "Pemuda",
+                "Detik",
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
               ),

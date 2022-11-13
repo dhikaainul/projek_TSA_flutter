@@ -31,12 +31,12 @@ class _Liputan6State extends State<Liputan6> {
                 .center, //mengatur posisi widget di dalam row agar terletak di tengah
             children: const <Widget>[
               Text(
-                "Pemuda",
+                "Liputan",
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
               ),
               Text(
-                " News",
+                " 6",
                 style:
                     TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
               )

@@ -77,6 +77,7 @@ class ListSportNewsCategory extends StatelessWidget {
               physics: const ClampingScrollPhysics(),
               //itemBuilder : bagaimana item ditampilkan
               itemBuilder: (context, index) {
+                // icon klik simpan data berita
                 return NewsItem(
                   imgUrl: responseBerita?.news[index].urlToImage ?? "",
                   title: responseBerita?.news[index].title ?? "",

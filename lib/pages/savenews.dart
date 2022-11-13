@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news/pages/detail.dart';
-import 'package:flutter_news/pages/halamandetik.dart';
 import 'data.dart';
 
 class SaveNews extends StatefulWidget {

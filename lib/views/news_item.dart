@@ -24,7 +24,8 @@ class NewsItem extends StatefulWidget {
 class _NewsItemState extends State<NewsItem> {
   String img =
       "https://smkassaadahgresik.sch.id/wp-content/uploads/2022/08/no.png";
-  showwidget() {
+  // jika widget.imgUrl kosong maka akan menampilkan img jika tidak kosong maka tampil widget.imgUrl
+  showimage() {
     // ignore: unnecessary_null_comparison
     if (widget.imgUrl == " ") {
       return img;
@@ -35,6 +36,7 @@ class _NewsItemState extends State<NewsItem> {
 
   @override
   Widget build(BuildContext context) {
+     // navigator push menuju kehalaman detail berita
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -54,7 +56,7 @@ class _NewsItemState extends State<NewsItem> {
           ),
         );
       },
-      //membua tampilan ui per item berita
+      //membuat tampilan ui per item berita
       child: Container(
         child: Container(
           margin: EdgeInsets.only(bottom: 24),
@@ -74,7 +76,7 @@ class _NewsItemState extends State<NewsItem> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(6),
                     child: Image.network(
-                      showwidget(),
+                      showimage(),
                       height: 200,
                       width: MediaQuery.of(context).size.width,
                       fit: BoxFit.cover,
@@ -95,12 +97,12 @@ class _NewsItemState extends State<NewsItem> {
                     widget.title,
                     style: TextStyle(
                         color: Colors.black87,
-                        fontSize: 18,
+                        fontSize: 17,
                         fontWeight: FontWeight.w500),
                     maxLines: 3,
                   ),
                   SizedBox(
-                    height: 4,
+                    height: 7,
                   ),
                   // Text(
                   //   desc,

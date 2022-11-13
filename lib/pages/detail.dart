@@ -129,7 +129,7 @@ class _DetailState extends State<Detail> {
                   .center, //mengatur posisi widget di dalam row agar terletak di tengah
               children: const <Widget>[
                 Text(
-                  "Pemuda",
+                  "Detail Saved",
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.w600),
                 ),
